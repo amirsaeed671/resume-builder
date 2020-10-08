@@ -15,7 +15,7 @@ const Form: React.FC<Props> = (props) => {
         className="rounded shadow-md text-gray-500 p-2 text-base bg-white"
         placeholder="Name"
       />
-      <button type="submit" className="bg-indigo-400 rounded-md shadow-md text-white p-2 m-4">{props.submitText}</button>
+      <button data-testid="submit-button" type="submit" className="bg-indigo-400 rounded-md shadow-md text-white p-2 m-4">{props.submitText}</button>
     </form>
   );
 };
