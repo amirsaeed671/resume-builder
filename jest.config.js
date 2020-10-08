@@ -17,5 +17,9 @@ module.exports = {
       '/node_modules/',
       '/test/(fixtures|tmp|__data__)/',
     ],
-    modulePathIgnorePatterns: ['/test/*'],
+    globals: {
+        'ts-jest': {
+            tsConfig: "tsconfig.test.json"
+        }
+    }
   }
