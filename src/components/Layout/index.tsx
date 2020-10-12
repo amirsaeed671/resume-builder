@@ -1,5 +1,5 @@
+import React, { ReactElement } from "react";
 import Head from "next/head";
-import { ReactElement } from "react";
 
 interface LayoutProps {
 	title: string;
