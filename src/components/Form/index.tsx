@@ -1,21 +1,47 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
+import TextInput from "components/TextInput";
+import SelectInput from "components/SelectInput";
+import countryList from "utils/countryList";
 
 interface FormProps {
 	submitText: string;
 	handleSubmit: (data) => void;
 }
 
+interface IFormValues {
+	first_name?: string;
+	last_name?: string;
+	email?: string;
+	about?: string;
+	country?: string;
+	street_address?: string;
+}
+
 const Form: React.FC<FormProps> = (props: FormProps) => {
+	const [formValues, setFormValues] = useState<IFormValues>({});
+	const firstInput = useRef<HTMLInputElement>(null);
+
+	useEffect(() => {
+		firstInput.current.focus();
+	}, []);
+
+	const handleTextInputChange = (event) => {
+		setFormValues({
+			...formValues,
+			[event.target.name]: event.target.value,
+		});
+	};
+
 	return (
 		<form
 			onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
 				e.preventDefault();
-				props.handleSubmit({});
+				props.handleSubmit(formValues);
 			}}
 			className="container p-4 mx-auto"
 		>
 			<div>
-				<div>
+				<div className="sm:border-b sm:border-gray-200 sm:pb-4">
 					<div>
 						<h3 className="text-lg leading-6 font-medium text-gray-900">
 							Personal Information
@@ -25,205 +51,61 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
 						</p>
 					</div>
 				</div>
-				<div className="mt-2 pt-4 sm:mt-2 sm:pt-4">
+				<div className="mt-2 pt-4 sm:mt-2 sm:pt-2">
 					<div className="mt-6 sm:mt-5">
-						<div className="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-							<label
-								htmlFor="first_name"
-								className="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
-							>
-								First name
-							</label>
-							<div className="mt-1 sm:mt-0 sm:col-span-2">
-								<div className="max-w-lg rounded-md shadow-sm sm:max-w-xs">
-									<input
-										id="first_name"
-										className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-									/>
-								</div>
-							</div>
-						</div>
-						<div className="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-							<label
-								htmlFor="last_name"
-								className="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
-							>
-								Last name
-							</label>
-							<div className="mt-1 sm:mt-0 sm:col-span-2">
-								<div className="max-w-lg rounded-md shadow-sm sm:max-w-xs">
-									<input
-										id="last_name"
-										className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-									/>
-								</div>
-							</div>
-						</div>
-
-						<div className="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-							<label
-								htmlFor="email"
-								className="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
-							>
-								Email address
-							</label>
-							<div className="mt-1 sm:mt-0 sm:col-span-2">
-								<div className="max-w-lg rounded-md shadow-sm">
-									<input
-										id="email"
-										type="email"
-										className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-									/>
-								</div>
-							</div>
-						</div>
-						<div className="mt-6 sm:mt-5">
-							<div className="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-								<label
-									htmlFor="about"
-									className="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
-								>
-									About
-								</label>
-								<div className="mt-1 sm:mt-0 sm:col-span-2">
-									<div className="max-w-lg flex rounded-md shadow-sm">
-										<textarea
-											id="about"
-											rows={3}
-											className="form-textarea block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-											defaultValue={""}
-										/>
-									</div>
-									<p className="mt-2 text-sm text-gray-500">
-										Write a few sentences about yourself.
-									</p>
-								</div>
-							</div>
-							<div className="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-center sm:border-t sm:border-gray-200 sm:pt-5">
-								<label
-									htmlFor="photo"
-									className="block text-sm leading-5 font-medium text-gray-700"
-								>
-									Photo
-								</label>
-								<div className="mt-2 sm:mt-0 sm:col-span-2">
-									<div className="flex items-center">
-										<span className="h-12 w-12 rounded-full overflow-hidden bg-gray-100">
-											<svg
-												className="h-full w-full text-gray-300"
-												fill="currentColor"
-												viewBox="0 0 24 24"
-											>
-												<path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-											</svg>
-										</span>
-										<span className="ml-5 rounded-md shadow-sm">
-											<button
-												type="button"
-												className="py-2 px-3 border border-gray-300 rounded-md text-sm leading-4 font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition duration-150 ease-in-out"
-											>
-												Change
-											</button>
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-							<label
-								htmlFor="country"
-								className="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
-							>
-								Country / Region
-							</label>
-							<div className="mt-1 sm:mt-0 sm:col-span-2">
-								<div className="max-w-lg rounded-md shadow-sm sm:max-w-xs">
-									<select
-										id="country"
-										className="block form-select w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-									>
-										<option>United States</option>
-										<option>Canada</option>
-										<option>Mexico</option>
-									</select>
-								</div>
-							</div>
-						</div>
-						<div className="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-							<label
-								htmlFor="street_address"
-								className="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
-							>
-								Street address
-							</label>
-							<div className="mt-1 sm:mt-0 sm:col-span-2">
-								<div className="max-w-lg rounded-md shadow-sm">
-									<input
-										id="street_address"
-										className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-									/>
-								</div>
-							</div>
-						</div>
-						<div className="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-							<label
-								htmlFor="city"
-								className="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
-							>
-								City
-							</label>
-							<div className="mt-1 sm:mt-0 sm:col-span-2">
-								<div className="max-w-lg rounded-md shadow-sm sm:max-w-xs">
-									<input
-										id="city"
-										className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-									/>
-								</div>
-							</div>
-						</div>
-						<div className="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-							<label
-								htmlFor="state"
-								className="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
-							>
-								State / Province
-							</label>
-							<div className="mt-1 sm:mt-0 sm:col-span-2">
-								<div className="max-w-lg rounded-md shadow-sm sm:max-w-xs">
-									<input
-										id="state"
-										className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-									/>
-								</div>
-							</div>
-						</div>
-						<div className="mt-6 sm:mt-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
-							<label
-								htmlFor="zip"
-								className="block text-sm font-medium leading-5 text-gray-700 sm:mt-px sm:pt-2"
-							>
-								ZIP / Postal
-							</label>
-							<div className="mt-1 sm:mt-0 sm:col-span-2">
-								<div className="max-w-lg rounded-md shadow-sm sm:max-w-xs">
-									<input
-										id="zip"
-										className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-									/>
-								</div>
-							</div>
+						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-4 sm:gap-y-8">
+							<TextInput
+								onChange={handleTextInputChange}
+								label="First Name"
+								ref={firstInput}
+								placeholder="Please enter your First Name"
+								id="first_name"
+							/>
+							<TextInput
+								className="mt-6 sm:mt-0"
+								onChange={handleTextInputChange}
+								label="Last Name"
+								placeholder="Please enter your Last Name"
+								id="last_name"
+							/>
+							<TextInput
+								className="mt-6 sm:mt-0"
+								id="email"
+								placeholder="Please enter your email address"
+								label="Email Address"
+								onChange={handleTextInputChange}
+							/>
+							<TextInput
+								className="mt-6 sm:mt-0"
+								placeholder="Short and engaging pitch about yourself"
+								label="About"
+								id="about"
+								onChange={handleTextInputChange}
+							/>
+							<SelectInput
+								label="Country / Region"
+								id="country"
+								className="mt-6 sm:mt-0"
+								options={countryList}
+								onChange={handleTextInputChange}
+							/>
+							<TextInput
+								className="mt-6 sm:mt-0"
+								placeholder="Please enter your postal address"
+								label="Postal address"
+								id="street_address"
+								onChange={handleTextInputChange}
+							/>
 						</div>
 					</div>
 				</div>
 				<div className="mt-8 border-t border-gray-200 pt-8 sm:mt-5 sm:pt-10">
 					<div>
 						<h3 className="text-lg leading-6 font-medium text-gray-900">
-							Notifications
+							Education
 						</h3>
 						<p className="mt-1 max-w-2xl text-sm leading-5 text-gray-500">
-							We&apos;ll always let you know about important
-							changes, but you pick what else you want to hear
-							about.
+							Please enter your education information
 						</p>
 					</div>
 					<div className="mt-6 sm:mt-5">
