@@ -1,15 +1,22 @@
 {
-  "parser": "@typescript-eslint/parser",
-  "extends": [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended",
-    "prettier/react",
-    "prettier/@typescript-eslint"
-  ],
-  "plugins": ["@typescript-eslint", "react", "prettier"],
-  "rules": {},
-  "globals": {
-    "React": "writable"
-  }
+	"parser": "@typescript-eslint/parser",
+	"extends": [
+		"plugin:@typescript-eslint/recommended",
+		"plugin:react/recommended",
+		"plugin:prettier/recommended",
+		"prettier/react",
+		"prettier/@typescript-eslint"
+	],
+	"plugins": ["@typescript-eslint", "react", "prettier"],
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
+	},
+	"rules": {
+		"no-var-requires": 0
+	},
+	"globals": {
+		"React": "writable"
+	}
 }
