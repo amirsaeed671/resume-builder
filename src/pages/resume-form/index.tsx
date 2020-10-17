@@ -1,12 +1,12 @@
-import Form from "components/Form";
+import Form, { IFormValues } from "components/Form";
 import Layout from "components/Layout";
 
 const ResumeForm: React.FC = () => {
 	return (
 		<Layout title="Resume Builder">
 			<Form
-				handleSubmit={() => {
-					alert("hello");
+				handleSubmit={(formValues: IFormValues) => {
+					alert(formValues.first_name);
 				}}
 				submitText="Submit"
 			/>
