@@ -8,10 +8,10 @@ const Home: React.FC = () => {
 		<Layout title="Resume Builder">
 			<div className="min-h-screen min-w-full background-image">
 				<div className="container mx-auto bg-transparent rounded-lg justify-center md:pt-24 p-6">
-					<h1 className="font-extrabold text-5xl sm:text-6xl sm:leading-none leading-3">
+					<h1 className="font-extrabold text-5xl sm:text-6xl sm:leading-none leading-10">
 						Build Your Resume
 					</h1>
-					<h2 className="text-3xl text text-gray-600 mt-12 leading-tight">
+					<h2 className="text-3xl text text-gray-600 mt-6 sm:mt-12 leading-tight">
 						Start out by these simple steps:
 					</h2>
 					<div className="mt-4 flex">
@@ -40,6 +40,7 @@ const Home: React.FC = () => {
 					</div>
 					<Button
 						text="Get Started"
+						size="large"
 						onClick={() => router.push("/resume-form")}
 					/>
 				</div>
