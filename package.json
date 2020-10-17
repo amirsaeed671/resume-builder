@@ -1,44 +1,56 @@
 {
-  "name": "resume-builder",
-  "version": "0.1.0",
-  "private": false,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "test": "jest --config ./jest.config.js",
-    "test:watch": "yarn test --watch",
-    "test:cov": "yarn test --coverage",
-    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
-  },
-  "dependencies": {
-    "@react-pdf/renderer": "^1.6.11",
-    "@tailwindcss/ui": "^0.6.2",
-    "next": "9.5.3",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
-    "tailwindcss": "^1.8.13"
-  },
-  "devDependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.0.4",
-    "@types/jest": "^26.0.14",
-    "@types/node": "^14.11.5",
-    "@types/react": "^16.9.51",
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
-    "@typescript-eslint/parser": "^4.4.0",
-    "eslint": "^7.11.0",
-    "eslint-config-prettier": "^6.12.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.4",
-    "husky": "^4.3.0",
-    "jest": "^26.5.2",
-    "lint-staged": "^10.4.0",
-    "postcss-preset-env": "^6.7.0",
-    "prettier": "^2.1.2",
-    "ts-jest": "^26.4.1",
-    "typescript": "^4.0.3"
-  }
+	"name": "resume-builder",
+	"version": "0.1.0",
+	"private": false,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"test": "jest --config ./jest.config.js",
+		"test:watch": "yarn test --watch",
+		"test:cov": "yarn test --coverage",
+		"test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand --watch",
+		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
+	},
+	"dependencies": {
+		"@react-pdf/renderer": "^1.6.11",
+		"@tailwindcss/ui": "^0.6.2",
+		"next": "9.5.3",
+		"react": "16.13.1",
+		"react-dom": "16.13.1",
+		"tailwindcss": "^1.8.13"
+	},
+	"devDependencies": {
+		"@testing-library/jest-dom": "^5.11.4",
+		"@testing-library/react": "^11.0.4",
+		"@types/jest": "^26.0.14",
+		"@types/node": "^14.11.5",
+		"@types/react": "^16.9.51",
+		"@typescript-eslint/eslint-plugin": "^4.4.0",
+		"@typescript-eslint/parser": "^4.4.0",
+		"eslint": "^7.11.0",
+		"eslint-config-prettier": "^6.12.0",
+		"eslint-plugin-prettier": "^3.1.4",
+		"eslint-plugin-react": "^7.21.4",
+		"husky": "^4.3.0",
+		"jest": "^26.5.2",
+		"lint-staged": "^10.4.0",
+		"postcss-preset-env": "^6.7.0",
+		"prettier": "^2.1.2",
+		"ts-jest": "^26.4.1",
+		"typescript": "^4.0.3"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"src/**/*.{js,jsx,ts,tsx}": [
+			"yarn run format",
+			"npm run lint",
+			"jest --findRelatedTests"
+		]
+	}
 }
