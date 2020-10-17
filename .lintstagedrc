@@ -1,7 +1,0 @@
-{
-  "src/**/*.{js,jsx,ts,tsx}": [
-    "yarn run format",
-    "npm run lint",
-    "jest --findRelatedTests"
-  ]
-}
