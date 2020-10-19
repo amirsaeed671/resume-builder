@@ -10,7 +10,7 @@ const EducationSection: React.FC<EducationSectionProps> = ({
 	onChange,
 }: EducationSectionProps) => {
 	return (
-		<div className="mt-8 border-t border-gray-200 pt-8 sm:mt-5 sm:pt-10 mb-8 border-b pb-5">
+		<div className="mt-8 border-t border-gray-200 pt-8 sm:mt-5 sm:pt-10">
 			<FormHeading
 				title="Education"
 				description="Please enter your education information"
@@ -19,7 +19,7 @@ const EducationSection: React.FC<EducationSectionProps> = ({
 				<div className="sm:border-t sm:border-gray-200 sm:pt-5">
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0 sm:gap-4 sm:gap-y-8">
 						<TextInput
-							className="mt-6 sm:mt-0 col-span-2"
+							className="mt-6 sm:mt-0 col-span-1 lg:col-span-2"
 							placeholder="Please enter your Institution name"
 							label="Institution name"
 							id="institution"

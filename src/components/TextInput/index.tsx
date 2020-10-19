@@ -5,11 +5,15 @@ interface TextInputProps {
 	label: string;
 	placeholder?: string;
 	className?: string;
+	span?: "full" | "lg";
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
-	({ id, label, placeholder, className, onChange }: TextInputProps, ref) => {
+	(
+		{ id, label, placeholder, className, onChange, span }: TextInputProps,
+		ref
+	) => {
 		return (
 			<div className={className}>
 				<label
@@ -19,7 +23,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 					{label}
 				</label>
 				<div className="mt-1 sm:mt-0">
-					<div className="max-w-lg rounded-md shadow-sm">
+					<div className={`max-w-${span} rounded-md shadow-sm`}>
 						<input
 							className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
 							id={id}
