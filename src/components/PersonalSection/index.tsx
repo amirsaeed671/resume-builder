@@ -46,6 +46,7 @@ const PersonalSection: React.FC<PersonalSectionProps> = ({
 						<TextInput
 							className="mt-6 sm:mt-0"
 							id="email"
+							type="email"
 							placeholder="Please enter your email address"
 							label="Email Address"
 							onChange={onChange}

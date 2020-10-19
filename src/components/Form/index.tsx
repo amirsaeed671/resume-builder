@@ -10,25 +10,40 @@ interface FormProps {
 	handleSubmit: (data: IFormValues) => void;
 }
 
-interface IFormValues {
-	first_name?: string;
-	last_name?: string;
-	email?: string;
-	about?: string;
-	country?: string;
-	street_address?: string;
-	start_date?: string;
-	end_date?: string;
-	company?: string;
-	skills?: string;
-	institution?: string;
-	degree?: string;
-	grade?: string;
-	date_of_completion?: string;
+export interface IFormValues {
+	first_name: string;
+	last_name: string;
+	email: string;
+	about: string;
+	country: string;
+	street_address: string;
+	start_date: string;
+	end_date: string;
+	company: string;
+	skills: string;
+	institution: string;
+	degree: string;
+	grade: string;
+	date_of_completion: string;
 }
 
 const Form: React.FC<FormProps> = (props: FormProps) => {
-	const [formValues, setFormValues] = useState<IFormValues>({});
+	const [formValues, setFormValues] = useState<IFormValues>({
+		first_name: "",
+		last_name: "",
+		email: "",
+		about: "",
+		country: "",
+		street_address: "",
+		start_date: "",
+		end_date: "",
+		company: "",
+		skills: "",
+		institution: "",
+		degree: "",
+		grade: "",
+		date_of_completion: "",
+	});
 
 	const handleTextInputChange = (event) => {
 		setFormValues({
