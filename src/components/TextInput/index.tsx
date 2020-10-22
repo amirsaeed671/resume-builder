@@ -7,11 +7,22 @@ interface TextInputProps {
 	className?: string;
 	span?: "full" | "lg";
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	required?: boolean;
+	type?: "text" | "email";
 }
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 	(
-		{ id, label, placeholder, className, onChange, span }: TextInputProps,
+		{
+			id,
+			label,
+			placeholder,
+			className,
+			onChange,
+			span = "full",
+			required = true,
+			type = "text",
+		}: TextInputProps,
 		ref
 	) => {
 		return (
@@ -28,9 +39,10 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 							className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
 							id={id}
 							ref={ref}
+							required={required}
 							name={id}
 							onChange={onChange}
-							type="text"
+							type={type}
 							placeholder={placeholder}
 						/>
 					</div>

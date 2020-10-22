@@ -26,7 +26,7 @@ const Button: React.FC<ButtonProps> = (props: ButtonProps) => {
 			type={props.type}
 			data-testid={props["data-testid"]}
 			onClick={props.onClick}
-			className={`${className} ${props.className}`}
+			className={`${className} ${props.className ? props.className : ""}`}
 		>
 			{props.text}
 		</button>
