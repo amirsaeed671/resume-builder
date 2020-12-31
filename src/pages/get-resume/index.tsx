@@ -1,11 +1,11 @@
-import dynamic from "next/dynamic";
-const PDFComp = dynamic(() => import("components/PDFComp"), { ssr: false });
+import Container from "components/Container";
+import PDFComp from "components/PDFComp";
 
 // Create Document Component
 const Resume: React.FC = () => (
-	<div>
+	<Container>
 		<PDFComp />
-	</div>
+	</Container>
 );
 
 export default Resume;
