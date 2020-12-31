@@ -16,6 +16,16 @@ const Layout: React.FC<LayoutProps> = (props: LayoutProps): ReactElement => {
 					name="viewport"
 					content="initial-scale=1.0, width=device-width"
 				/>
+				<meta name="author" content="Amir Ali" />
+				<meta
+					name="description"
+					content="Build your resume fast and free"
+				/>
+				<meta
+					name="keywords"
+					content="resume, cv, next, job, resume-builder, build"
+				/>
+				<meta name="application-name" content="resume-builder" />
 			</Head>
 			{props.children}
 		</div>
