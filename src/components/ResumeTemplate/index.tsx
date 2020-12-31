@@ -15,7 +15,7 @@ const ResumeTemplate = forwardRef(
 					</h1>
 				</div>
 				<div className="mb-12">
-					<p className="text-xl">{data.about}</p>
+					<p className="text-xl max-w-sm">{data.about}</p>
 					<p className="italic max-w-sm">{data.street_address}</p>
 					<p className="text-sm text-gray-600">{data.email}</p>
 				</div>
