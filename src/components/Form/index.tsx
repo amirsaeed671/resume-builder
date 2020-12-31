@@ -15,7 +15,6 @@ export interface IFormValues {
 	last_name: string;
 	email: string;
 	about: string;
-	country: string;
 	street_address: string;
 	start_date: string;
 	end_date: string;
@@ -33,7 +32,6 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
 		last_name: "",
 		email: "",
 		about: "",
-		country: "",
 		street_address: "",
 		start_date: "",
 		end_date: "",

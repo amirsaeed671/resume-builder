@@ -1,7 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import countryList from "utils/countryList";
 import TextInput from "components/TextInput";
-import SelectInput from "components/SelectInput";
 import FormHeading from "components/FormHeadings";
 
 interface PersonalSectionProps {
@@ -53,16 +51,9 @@ const PersonalSection: React.FC<PersonalSectionProps> = ({
 						/>
 						<TextInput
 							className="mt-6 sm:mt-0"
-							placeholder="Short and engaging pitch about yourself"
-							label="About"
+							placeholder="Short and engaging title"
+							label="Title"
 							id="about"
-							onChange={onChange}
-						/>
-						<SelectInput
-							label="Country / Region"
-							id="country"
-							className="mt-6 sm:mt-0"
-							options={countryList}
 							onChange={onChange}
 						/>
 						<TextInput
