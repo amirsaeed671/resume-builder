@@ -14,11 +14,11 @@
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\""
 	},
 	"dependencies": {
-		"@react-pdf/renderer": "^1.6.11",
 		"@tailwindcss/ui": "^0.6.2",
 		"next": "9.5.3",
 		"react": "16.13.1",
 		"react-dom": "16.13.1",
+		"react-to-print": "^2.12.1",
 		"tailwindcss": "^1.8.13"
 	},
 	"devDependencies": {

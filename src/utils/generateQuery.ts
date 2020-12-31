@@ -4,7 +4,7 @@ const generateQuery: (formValues: IFormValues) => string = (formValues) => {
 	let queryString = "";
 	for (const key in formValues) {
 		if (formValues[key] === "") return "";
-		queryString += `${key}=${formValues[key]}`;
+		queryString += `${key}=${formValues[key]}&`;
 	}
 	return queryString;
 };
