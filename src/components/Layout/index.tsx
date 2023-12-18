@@ -3,10 +3,9 @@ import Head from "next/head";
 
 interface LayoutProps {
 	title: string;
-	children: React.ReactChild | Element[];
 }
 
-const Layout: React.FC<LayoutProps> = (props: LayoutProps): ReactElement => {
+const Layout = (props: React.PropsWithChildren<LayoutProps>): ReactElement => {
 	return (
 		<div>
 			<Head>
