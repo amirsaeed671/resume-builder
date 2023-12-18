@@ -5,6 +5,7 @@ import IntroductionSection from "components/TemplateSections/IntroductionSection
 import ExperienceSection from "components/TemplateSections/ExperienceSection";
 import SkillsSection from "components/TemplateSections/SkillsSections";
 import EducationSection from "components/TemplateSections/EducationSection";
+import AboutSection from "components/TemplateSections/AboutSection";
 
 interface ResumeTemplateProps {
 	data: IFormValues;
@@ -16,6 +17,7 @@ const ResumeTemplate = forwardRef(
 			<Layout title={`Resume (${data.first_name} ${data.last_name})`}>
 				<div className="bg-white p-6 pb-24 rounded" ref={ref}>
 					<IntroductionSection data={data} />
+					<AboutSection data={data} />
 					<ExperienceSection data={data} />
 					<EducationSection data={data} />
 					<SkillsSection data={data} />

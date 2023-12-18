@@ -1,6 +1,6 @@
 import React from "react";
 
-interface TextInputProps {
+type TextInputProps = {
 	id: string;
 	label: string;
 	placeholder?: string;
@@ -9,7 +9,7 @@ interface TextInputProps {
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 	required?: boolean;
 	type?: "text" | "email";
-}
+} & React.HTMLAttributes<HTMLInputElement>;
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 	(
@@ -22,6 +22,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 			span = "full",
 			required = true,
 			type = "text",
+			...props
 		}: TextInputProps,
 		ref
 	) => {
@@ -36,6 +37,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 				<div className="mt-1 sm:mt-0">
 					<div className={`max-w-${span} rounded-md shadow-sm`}>
 						<input
+							{...props}
 							className="form-input block w-full transition duration-150 ease-in-out sm:text-sm sm:leading-5"
 							id={id}
 							ref={ref}

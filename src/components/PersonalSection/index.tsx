@@ -3,13 +3,13 @@ import TextInput from "components/TextInput";
 import FormHeading from "components/FormHeadings";
 
 interface PersonalSectionProps {
-	onChange: (
-		event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-	) => void;
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	initialValues: Record<string, string | undefined>;
 }
 
 const PersonalSection: React.FC<PersonalSectionProps> = ({
 	onChange,
+	initialValues,
 }: PersonalSectionProps) => {
 	const firstInput = useRef<HTMLInputElement>(null);
 
@@ -29,6 +29,7 @@ const PersonalSection: React.FC<PersonalSectionProps> = ({
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0 sm:gap-4 sm:gap-y-8">
 						<TextInput
 							onChange={onChange}
+							defaultValue={initialValues["first_name"]}
 							label="First Name"
 							ref={firstInput}
 							placeholder="Please enter your First Name"
@@ -37,6 +38,7 @@ const PersonalSection: React.FC<PersonalSectionProps> = ({
 						<TextInput
 							className="mt-6 sm:mt-0"
 							onChange={onChange}
+							defaultValue={initialValues["last_name"]}
 							label="Last Name"
 							placeholder="Please enter your Last Name"
 							id="last_name"
@@ -48,20 +50,31 @@ const PersonalSection: React.FC<PersonalSectionProps> = ({
 							placeholder="Please enter your email address"
 							label="Email Address"
 							onChange={onChange}
+							defaultValue={initialValues["email"]}
 						/>
 						<TextInput
 							className="mt-6 sm:mt-0"
-							placeholder="Short and engaging title"
+							placeholder="Your title/designation"
 							label="Title"
 							id="about"
 							onChange={onChange}
+							defaultValue={initialValues["about"]}
 						/>
 						<TextInput
 							className="mt-6 sm:mt-0"
-							placeholder="Please enter your postal address"
-							label="Postal address"
+							placeholder="Short and concise description"
+							label="Description"
+							id="description"
+							onChange={onChange}
+							defaultValue={initialValues["description"]}
+						/>
+						<TextInput
+							className="mt-6 sm:mt-0"
+							placeholder="Please enter your address, e.g Karachi, Pakistan"
+							label="Address"
 							id="street_address"
 							onChange={onChange}
+							defaultValue={initialValues["street_address"]}
 						/>
 					</div>
 				</div>
