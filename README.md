@@ -10,3 +10,5 @@ First, run the development server:
 yarn dev
 ```
 
+### Access the app at [https://resume-builder-theta.vercel.app/](https://resume-builder-theta.vercel.app/)
+
