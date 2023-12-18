@@ -1,18 +1,18 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import TextInput from "components/TextInput";
 import FormHeading from "components/FormHeadings";
 
-interface EducationSectionProps {
+interface ExperienceSectionProps {
 	onChange: (value: { id: string; values: string }) => void;
 	initialValues: Record<string, string | undefined>;
 }
 
 type SectionRowInput = {
 	id: number;
-	institution: string;
-	grade: string;
-	degree: string;
-	date_of_completion: string;
+	company: string;
+	designation: string;
+	start_date: string;
+	end_date: string;
 };
 
 const initialRowValue = (initData: string) => {
@@ -25,20 +25,20 @@ const initialRowValue = (initData: string) => {
 	return [
 		{
 			id: new Date().getTime(),
-			institution: "",
-			grade: "",
-			degree: "",
-			date_of_completion: "",
+			company: "",
+			designation: "",
+			start_date: "",
+			end_date: "",
 		},
 	];
 };
 
-const EducationSection: React.FC<EducationSectionProps> = ({
+const ExperienceSection: React.FC<ExperienceSectionProps> = ({
 	onChange,
 	initialValues,
-}: EducationSectionProps) => {
+}: ExperienceSectionProps) => {
 	const [sectionInputs, setSectionInputs] = useState<SectionRowInput[]>(
-		initialRowValue(initialValues.education_section)
+		initialRowValue(initialValues.experience_section)
 	);
 
 	const handleChange = (
@@ -59,10 +59,10 @@ const EducationSection: React.FC<EducationSectionProps> = ({
 			...prev,
 			{
 				id: new Date().getTime(),
-				institution: "",
-				degree: "",
-				grade: "",
-				date_of_completion: "",
+				company: "",
+				designation: "",
+				start_date: "",
+				end_date: "",
 			},
 		]);
 	};
@@ -73,7 +73,7 @@ const EducationSection: React.FC<EducationSectionProps> = ({
 
 	useEffect(() => {
 		onChange({
-			id: "education_section",
+			id: "experience_section",
 			values: JSON.stringify(sectionInputs),
 		});
 	}, [sectionInputs]);
@@ -81,68 +81,67 @@ const EducationSection: React.FC<EducationSectionProps> = ({
 	return (
 		<div className="mt-8 border-t border-gray-200 pt-8 sm:mt-5 sm:pt-10">
 			<FormHeading
-				title="Education"
-				description="Please enter your education information"
+				title="Experience"
+				description="Please enter your job experience"
 			/>
 			<div className="mt-6 sm:mt-5">
 				<div className="sm:border-t sm:border-gray-200 sm:pt-5">
-					{sectionInputs.map((row, i) => (
+					{sectionInputs?.map((row, i) => (
 						<Fragment key={row.id}>
-							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-0 sm:gap-4 sm:gap-y-8">
+							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0 sm:gap-4 sm:gap-y-8">
 								<TextInput
-									className="mt-6 sm:mt-0 col-span-1 lg:col-span-2"
-									placeholder="Please enter your Institution name"
-									label="Institution name"
-									id="institution"
-									defaultValue={row["institution"]}
+									className="mt-6 sm:mt-0"
+									placeholder="Company Name"
+									label="Company"
+									id="company"
+									defaultValue={row["company"]}
 									onChange={({ target }) =>
 										handleChange(row.id, {
-											key: target.name,
+											key: target.id,
 											value: target.value,
 										})
 									}
 								/>
 								<TextInput
 									className="mt-6 sm:mt-0"
-									placeholder="Please enter your degree name"
-									label="Degree name"
-									id="degree"
-									defaultValue={row["degree"]}
+									placeholder="Role/Designation"
+									label="Role/Designation"
+									id="designation"
+									defaultValue={row["designation"]}
 									onChange={({ target }) =>
 										handleChange(row.id, {
-											key: target.name,
+											key: target.id,
 											value: target.value,
 										})
 									}
 								/>
 								<TextInput
 									className="mt-6 sm:mt-0"
-									placeholder="Please enter your Grade/GPA"
-									label="Grade/GPA"
-									id="grade"
-									defaultValue={row["grade"]}
+									placeholder="Start Date"
+									label="Start Date"
+									id="start_date"
+									defaultValue={row["start_date"]}
 									onChange={({ target }) =>
 										handleChange(row.id, {
-											key: target.name,
+											key: target.id,
 											value: target.value,
 										})
 									}
 								/>
 								<TextInput
 									className="mt-6 sm:mt-0"
-									placeholder="Please enter your date of completion"
-									label="Date of completion"
-									id="date_of_completion"
-									defaultValue={row["date_of_completion"]}
+									placeholder="End Date"
+									label="End Date"
+									id="end_date"
+									defaultValue={row["end_date"]}
 									onChange={({ target }) =>
 										handleChange(row.id, {
-											key: target.name,
+											key: target.id,
 											value: target.value,
 										})
 									}
 								/>
 							</div>
-
 							<div className="flex gap-2">
 								{i + 1 === sectionInputs.length && (
 									<img
@@ -171,4 +170,4 @@ const EducationSection: React.FC<EducationSectionProps> = ({
 	);
 };
 
-export default EducationSection;
+export default ExperienceSection;

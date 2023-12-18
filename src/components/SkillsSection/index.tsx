@@ -4,16 +4,18 @@ import FormHeading from "components/FormHeadings";
 
 interface SkillSectionProps {
 	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+	initialValues: Record<string, string | undefined>;
 }
 
 const SkillSection: React.FC<SkillSectionProps> = ({
 	onChange,
+	initialValues,
 }: SkillSectionProps) => {
 	return (
 		<div className="mt-8 border-t border-gray-200 pt-8 sm:mt-5 sm:pt-10 mb-8 border-b pb-5">
 			<FormHeading
-				title="Skills / Experience"
-				description="Please enter your relevant skills and experience"
+				title="Skills"
+				description="Please enter tech stack, programming language ...etc  here"
 			/>
 			<div className="mt-6 sm:mt-5">
 				<div className="sm:border-t sm:border-gray-200 sm:pt-5">
@@ -23,27 +25,7 @@ const SkillSection: React.FC<SkillSectionProps> = ({
 							placeholder="Skills [comma seperated] e.g. Javascript, React, Node"
 							label="Skills"
 							id="skills"
-							onChange={onChange}
-						/>
-						<TextInput
-							className="mt-6 sm:mt-0"
-							placeholder="Company Name"
-							label="Company"
-							id="company"
-							onChange={onChange}
-						/>
-						<TextInput
-							className="mt-6 sm:mt-0"
-							placeholder="Start Date"
-							label="Start Date"
-							id="start_date"
-							onChange={onChange}
-						/>
-						<TextInput
-							className="mt-6 sm:mt-0"
-							placeholder="End Date"
-							label="End Date"
-							id="end_date"
+							defaultValue={initialValues["skills"]}
 							onChange={onChange}
 						/>
 					</div>

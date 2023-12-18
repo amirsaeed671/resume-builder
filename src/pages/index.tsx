@@ -6,6 +6,7 @@ import StepText from "components/StepText";
 import Heading from "components/Heading";
 import SubHeading from "components/SubHeading";
 import Container from "components/Container";
+import Footer from "components/Footer";
 
 const Home: React.FC = () => {
 	const router = useRouter();
@@ -24,6 +25,7 @@ const Home: React.FC = () => {
 					onClick={() => router.push("/resume-form")}
 				/>
 			</Container>
+			<Footer />
 		</Layout>
 	);
 };

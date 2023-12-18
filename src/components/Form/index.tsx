@@ -4,10 +4,12 @@ import EducationSection from "components/EducationSection";
 import FormContainer from "components/FormContainer";
 import PersonalSection from "components/PersonalSection";
 import SkillSection from "components/SkillsSection";
+import ExperienceSection from "components/ExperienceSection";
 
 interface FormProps {
 	submitText: string;
 	handleSubmit: (data: IFormValues) => void;
+	initialData: Partial<IFormValues>;
 }
 
 export interface IFormValues {
@@ -15,15 +17,11 @@ export interface IFormValues {
 	last_name: string;
 	email: string;
 	about: string;
+	description: string;
 	street_address: string;
-	start_date: string;
-	end_date: string;
-	company: string;
+	experience_section: string;
+	education_section: string;
 	skills: string;
-	institution: string;
-	degree: string;
-	grade: string;
-	date_of_completion: string;
 }
 
 const Form: React.FC<FormProps> = (props: FormProps) => {
@@ -32,15 +30,12 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
 		last_name: "",
 		email: "",
 		about: "",
+		description: "",
 		street_address: "",
-		start_date: "",
-		end_date: "",
-		company: "",
+		experience_section: "",
+		education_section: "",
 		skills: "",
-		institution: "",
-		degree: "",
-		grade: "",
-		date_of_completion: "",
+		...props.initialData,
 	});
 
 	const handleTextInputChange = (event) => {
@@ -50,15 +45,34 @@ const Form: React.FC<FormProps> = (props: FormProps) => {
 		});
 	};
 
+	const handleSectionChange = ({ id, values }) => {
+		setFormValues({
+			...formValues,
+			[id]: values,
+		});
+	};
 	return (
 		<FormContainer
 			onSubmit={() => {
 				props.handleSubmit(formValues);
 			}}
 		>
-			<PersonalSection onChange={handleTextInputChange} />
-			<EducationSection onChange={handleTextInputChange} />
-			<SkillSection onChange={handleTextInputChange} />
+			<PersonalSection
+				initialValues={props.initialData}
+				onChange={handleTextInputChange}
+			/>
+			<EducationSection
+				initialValues={props.initialData}
+				onChange={handleSectionChange}
+			/>
+			<ExperienceSection
+				initialValues={props.initialData}
+				onChange={handleSectionChange}
+			/>
+			<SkillSection
+				initialValues={props.initialData}
+				onChange={handleTextInputChange}
+			/>
 			<Button
 				type="submit"
 				data-testid="submit-button"
